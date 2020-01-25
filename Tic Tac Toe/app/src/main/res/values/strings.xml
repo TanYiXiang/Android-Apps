@@ -3,4 +3,9 @@
     <string name="playerOneTurn">Player one\'s turn!!</string>
     <string name="reset">Reset</string>
     <string name="playerTwoTurn">Player two\'s turn!!</string>
+    <string name= "gameReset">Game reset.</string>
+    <string name = "tileAlreadySelected">That tile has already been selected. Please choose a blank tile.</string>
+    <string name = "playerOneWins">Player one wins!!!</string>
+    <string name = "playerTwoWins">Player two wins!!</string>
+    <string name = "playersDraw">It\'s a draw!!</string>
 </resources>
