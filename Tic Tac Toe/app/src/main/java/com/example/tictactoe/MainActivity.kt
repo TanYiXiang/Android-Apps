@@ -32,6 +32,12 @@ class MainActivity : AppCompatActivity() {
         resetButton.setOnClickListener { resetGame(tileButtons) }
     }
 
+
+    /**
+     * Handles tile markings and check for winning conditions.
+     *
+     * @param view The tile button tapped.
+     */
     private fun gameTileClicked(view: View) {
         val button = view as Button
         if (view.text != "") {
@@ -65,6 +71,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     *  Detect win conditions on the board.
+     *
+     *  @param tileButtons The board tiles
+     *  @return True if win condition detected, false otherwise.
+     */
     private fun checkWin(tileButtons: ArrayList<Button>): Boolean {
 
         //Check horizontal tiles
@@ -77,17 +89,32 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Check vertical tiles
-        for (i in 0..2){
+        for (i in 0..2) {
             if ((tileButtons[i].text == tileButtons[i + 3].text) && (tileButtons[i].text == tileButtons[i + 6].text)
                 && (tileButtons[i].text != "")
             ) {
                 return true
             }
         }
+
+        //Check diagonal tiles
+        if ((tileButtons[0].text == tileButtons[4].text) && (tileButtons[0].text == tileButtons[8].text) && (tileButtons[0].text != "")) {
+            return true
+        }
+
+        if ((tileButtons[2].text == tileButtons[4].text) && (tileButtons[2].text == tileButtons[6].text) && (tileButtons[2].text != "")) {
+            return true
+        }
+
         return false
     }
 
 
+    /**
+     *  Reset the game board by clearing all the tiles.
+     *
+     *  @param tileButtons The board tiles
+     */
     private fun resetGame(tileButtons: ArrayList<Button>) {
         for (buttons in tileButtons) {
             buttons.text = ""
