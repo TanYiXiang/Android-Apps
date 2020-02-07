@@ -2,21 +2,25 @@ package com.example.simplecalculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.simplecalculator.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
+import net.objecthunter.exp4j.Expression
+import net.objecthunter.exp4j.ExpressionBuilder
+import java.lang.Exception
+import kotlin.math.exp
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initNumberButtonClickListeners()
         initExpressionButtonClickListeners()
-
-
     }
 
     private fun initNumberButtonClickListeners() {
@@ -46,16 +50,43 @@ class MainActivity : AppCompatActivity() {
             division_button.setOnClickListener { appendExpression(division_button.text) }
             back_button.setOnClickListener { backExpression() }
             CE_button.setOnClickListener { clearExpression() }
+            equal_button.setOnClickListener { calculateExpression() }
+            result_text.text = ""
+        }
+    }
+
+    private fun calculateExpression() {
+        try {
+            val expression = ExpressionBuilder(expression_text.text.toString()).build()
+            val result = expression.evaluate()
+            val longResult = result.toLong()
+
+            if (result == longResult.toDouble()) {
+                result_text.text = longResult.toString()
+            } else {
+                result_text.text = result.toString()
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this, "Invalid expression", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun appendExpression(buttonText: CharSequence) {
-        binding.expressionText.append(buttonText)
+
+        if(result_text.text.isNotEmpty()){
+            expression_text.text = ""
+        }
+
+        binding.expressionText.append(result_text.text.toString())
+        binding.expressionText.append(buttonText.toString())
+        result_text.text = ""
 
     }
 
+
     private fun clearExpression() {
         binding.expressionText.text = ""
+        result_text.text = ""
     }
 
     private fun backExpression() {

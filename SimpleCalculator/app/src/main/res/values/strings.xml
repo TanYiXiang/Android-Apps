@@ -19,4 +19,5 @@
     <string name="decimal_point">.</string>
     <string name="zero">0</string>
     <string name="equal_symbol">=</string>
+    <string name="back_text">Back</string>
 </resources>
