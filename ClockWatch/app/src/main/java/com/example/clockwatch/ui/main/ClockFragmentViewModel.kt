@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class MainViewModel : ViewModel() {
+class ClockFragmentViewModel : ViewModel() {
 
     private val _timeZoneString = MutableLiveData<String>()
     val timeZoneString: LiveData<String>
