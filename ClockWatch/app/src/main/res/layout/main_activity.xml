@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?actionBarSize"
+            app:tabTextColor="@color/white"
             app:tabBackground="@color/colorPrimary"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/white"
